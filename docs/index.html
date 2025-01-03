@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三週目</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://media1.tenor.com/m/uZv4t9KXvCMAAAAd/rainbow-cat-rainbow.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+        }
+        .time-display {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .main-block {
+            background-color: rgba(250, 235, 215, 0.6);
+            width: 50%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-block">
+        <h1>罐製の戒菸三週目</h1>
+        <h2>共經歷了:</h2>
+        <div class="time-display" id="timePassed3rd"></div>
+    
+        <br>
+        <h2>二週目失敗紀錄:</h2>
+        <div class="time-display" id="timePassed2nd"></div>
+    
+        <br>
+        <h2>一週目失敗紀錄:</h2>
+        <div class="time-display" id="timePassed1st"></div>
+    </div>
+
+    <script>
+        function calculateTimePassed(elementId, startTime, endTime) {
+            // 計算時間差，單位是毫秒
+            const timeDiff = endTime - startTime;
+
+            // 將毫秒轉換成對應的天、時、分、秒
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            // 顯示結果
+            document.getElementById(elementId).innerHTML = 
+                `${days}天 : ${hours}小時 : ${minutes}分鐘 : ${seconds}秒`;
+        }
+
+        function updateShowedTime() {
+            // 設定起始時間
+            const startTime = new Date('2025-01-02T12:15:00+08:00');
+            const currentTime = new Date();
+
+            calculateTimePassed('timePassed3rd', startTime, currentTime);
+        }
+
+        function initFailedRecord() {
+            updateShowedTime();
+            
+            var startTime = new Date('2024-09-23T09:30:00+08:00');
+            var endTime = new Date('2024-10-28T20:50:00+08:00');
+            calculateTimePassed('timePassed2nd', startTime, endTime);
+
+            startTime = new Date('2024-07-09T09:30:00+08:00');
+            endTime = new Date('2024-07-18T19:16:00+08:00');
+            calculateTimePassed('timePassed1st', startTime, endTime);
+        }
+
+        initFailedRecord();
+        // 每秒更新一次顯示的時間
+        setInterval(updateShowedTime, 1000);
+    </script>
+
+</body>
+</html>
