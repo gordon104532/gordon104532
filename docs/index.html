@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三週目</title>
+    <title>罐子の戒菸進程</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,7 +21,7 @@
         }
         .main-block {
             background-color: rgba(250, 235, 215, 0.6);
-            width: 50%;
+            width: 85%;
             margin: 0 auto;
             padding: 10px;
         }
@@ -31,6 +31,7 @@
 
     <div class="main-block">
         <h1>罐製の戒菸三週目</h1>
+        <h2>緊急暫停🚨</h2>
         <h2>共經歷了:</h2>
         <div class="time-display" id="timePassed3rd"></div>
     
@@ -68,8 +69,12 @@
         }
 
         function initFailedRecord() {
-            updateShowedTime();
-            
+            // updateShowedTime();
+            var startTime = new Date('2025-01-02T12:15:00+08:00');
+            var endTime = new Date('2025-01-04T23:15:00+08:00');
+            calculateTimePassed('time-display', startTime, endTime);
+
+
             var startTime = new Date('2024-09-23T09:30:00+08:00');
             var endTime = new Date('2024-10-28T20:50:00+08:00');
             calculateTimePassed('timePassed2nd', startTime, endTime);
@@ -81,7 +86,7 @@
 
         initFailedRecord();
         // 每秒更新一次顯示的時間
-        setInterval(updateShowedTime, 1000);
+        // setInterval(updateShowedTime, 1000);
     </script>
 
 </body>
